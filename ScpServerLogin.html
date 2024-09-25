@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation Login</title>
+    <style>
+        body {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 0 10px #000;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .notice {
+            font-size: 1.1em;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: #f44336; /* Red for urgency */
+        }
+        .input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #333;
+            border: none;
+            color: #fff;
+            font-size: 1em;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #444;
+            border: 1px solid #f0f0f0;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #555;
+        }
+        .error {
+            color: #f44336;
+            font-size: 0.9em;
+            margin-top: 20px;
+            display: none; /* Hide by default */
+        }
+        .success {
+            color: #00ff00;
+            font-size: 0.9em;
+            margin-top: 20px;
+            display: none; /* Hide by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="scp-logo3.png" class="logo" alt="SCP Foundation Logo">
+        <div class="notice">Classified Access - Authorized Personnel Only</div>
+        <form id="loginForm">
+            <input type="text" class="input" id="userId" placeholder="User ID" required>
+            <input type="password" class="input" id="password" placeholder="Password" required>
+            <button type="submit" class="button">Begin Terminal Session</button>
+        </form>
+        <div class="error" id="errorMsg">ACCESS DENIED. CLEARANCE LEVEL INSUFFICIENT.</div>
+        <div class="success" id="successMsg">ACCESS GRANTED. WELCOME, AGENT.</div>
+    </div>
+
+    <script>
+        // Define the valid user ID and password
+        const validUserId = 'O5-XX';
+        const validPassword = 'SECURECONTAINPROTECT';
+
+        // Define the Discord invite link (replace this with your own server invite link)
+        const discordInviteLink = 'https://discord.gg/sP56gH6Rbs';
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting
+            
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+
+            // Reset messages
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+
+            // Check if the user ID and password match the valid credentials
+            if (userId === validUserId && password === validPassword) {
+                successMsg.style.display = 'block'; // Show success message
+                
+                // Redirect to the Discord invite after 2 seconds
+                setTimeout(function() {
+                    window.location.href = discordInviteLink;
+                }, 2000);
+            } else {
+                errorMsg.style.display = 'block'; // Show error message
+            }
+        });
+    </script>
+</body>
+</html>
